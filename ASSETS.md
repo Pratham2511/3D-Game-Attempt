@@ -1,18 +1,24 @@
 # Asset Manifest
 
-> [!NOTE]
-> Every hero and enemy FBX contains the full skinned Mixamo-rigged character, so one file per character (recommend the idle clip: `assets/hero/sword_and_shield_idle.fbx` for hero, `assets/enemy/standing_idle.fbx` for enemy) will later be loaded as the model, and the rest supply animation clips.
+> Character models (full skinned mesh, weapons attached to the hand bones):
+> `assets/hero/Paladin_WProp_J_Nordstrom.fbx` (hero — sword and shield) and
+> `assets/enemy/Brute.fbx` (enemy — axe).
+> Every other FBX is an animation-only clip (skeleton + keyframes, no mesh)
+> authored on the standard Mixamo skeleton, so any clip retargets onto either
+> character.
+> Enemy death animations: `assets/enemy/standing_react_death_forward.fbx`
 
 ### Duplicate Removal
 
 - **Duplicates removed:** None. All archives were checked for duplicate hashes and naming variants (such as `..._1_.fbx` or `(1)`); all files represent unique animation clips or models.
 
-### Assets Table (101 files)
+### Assets Table (104 files)
 
 | File Path | Size (MB) | Role |
 |:---|:---|:---|
 | `assets/arena/stratford_langthorne_abbey_remains.glb` | 71.43 MB | arena |
 | `assets/hero/Paladin_WProp_J_Nordstrom.fbx` | 10.26 MB | hero pack |
+| `assets/hero/Pro_Sword_and_Shield_Pack.zip` | 11.82 MB | source archive |
 | `assets/hero/draw_sword_1.fbx` | 0.42 MB | hero pack |
 | `assets/hero/draw_sword_2.fbx` | 0.32 MB | hero pack |
 | `assets/hero/sheath_sword_1.fbx` | 0.38 MB | hero pack |
@@ -65,6 +71,7 @@
 | `assets/hero/sword_and_shield_walk.fbx` | 0.37 MB | hero pack |
 | `assets/hero/sword_and_shield_walk_(2).fbx` | 0.35 MB | hero pack |
 | `assets/enemy/Brute.fbx` | 23.01 MB | enemy pack |
+| `assets/enemy/Pro_Melee_Axe_Pack.zip` | 26.93 MB | source archive |
 | `assets/enemy/crouch_idle.fbx` | 0.43 MB | enemy pack |
 | `assets/enemy/crouch_to_standing_idle.fbx` | 0.33 MB | enemy pack |
 | `assets/enemy/standing_block_idle.fbx` | 0.44 MB | enemy pack |
@@ -86,6 +93,7 @@
 | `assets/enemy/standing_melee_combo_attack_ver._2.fbx` | 0.67 MB | enemy pack |
 | `assets/enemy/standing_melee_combo_attack_ver._3.fbx` | 0.53 MB | enemy pack |
 | `assets/enemy/standing_melee_run_jump_attack.fbx` | 0.62 MB | enemy pack |
+| `assets/enemy/standing_react_death_forward.fbx` | 23.62 MB | enemy pack |
 | `assets/enemy/standing_react_large_from_left.fbx` | 0.36 MB | enemy pack |
 | `assets/enemy/standing_react_large_from_right.fbx` | 0.44 MB | enemy pack |
 | `assets/enemy/standing_react_large_gut.fbx` | 0.42 MB | enemy pack |
