@@ -126,10 +126,12 @@ export const CONFIG = {
     maxStamina: 100,
     staminaRegen: 28,
     staminaRegenDelay: 0.7,
-    heavyHoldTime: 0.32,
+    cancelFrac: 0.35, // fraction of recovery after which block/dodge/kick may cancel an attack
+    dodgeTime: 0.6,
     comboBufferTime: 0.45,
     lightDamage: [18, 20, 22, 30],
     heavyDamage: 48,
+    heavyLungeScale: 0.6,
     kickDamage: 6,
     lightStamina: 9,
     heavyStamina: 22,
@@ -157,6 +159,10 @@ export const CONFIG = {
     kickStagger: 1.2,
     telegraph: 0.28,
     turnRate: 6,
+    walkSpeed: 1.1,
+    runSpeed: 2.7,
+    circleSpeed: 0.95,
+    accel: 7,
   },
 
   combat: {
@@ -237,7 +243,7 @@ export const CONFIG = {
     },
     order: ['Low', 'Medium', 'High', 'Ultra'],
     targetFrameMs: 16.7,
-    dynamicResolution: { min: 0.6, max: 1, step: 0.1, overBudgetMs: 18.5, headroomMs: 13, window: 45 },
+    dynamicResolution: { min: 0.6, max: 1, step: 0.1, overBudgetMs: 18.5, headroomMs: 17.4, window: 45 },
   },
 
   // Phong -> PBR conversion. "spec" means the source specular map drives roughness (and,

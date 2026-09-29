@@ -11,6 +11,7 @@ export class Input {
     this.attackPressed = false;
     this.attackHeld = false;
     this.attackHoldTime = 0;
+    this.heavyPressed = false;
     this.kickPressed = false;
     this.dodgePressed = false;
     this.lockPressed = false;
@@ -37,6 +38,7 @@ export class Input {
       if (!this.enabled) return;
       if (!this.locked && !this.virtual) { this.requestLock(); return; }
       if (e.button === 0) { this.attackPressed = true; this.attackHeld = true; this.attackHoldTime = 0; this.lastInputTime = performance.now(); }
+      if (e.button === 1) { this.heavyPressed = true; e.preventDefault(); this.lastInputTime = performance.now(); }
       if (e.button === 2) this.block = true;
     };
     this._onMouseUp = (e) => {
@@ -70,6 +72,7 @@ export class Input {
     this.lastInputTime = performance.now();
     switch (e.code) {
       case 'KeyF': this.kickPressed = true; break;
+      case 'KeyE': this.heavyPressed = true; break;
       case 'Space': this.dodgePressed = true; e.preventDefault(); break;
       case 'Tab': this.lockPressed = true; e.preventDefault(); break;
       case 'ShiftLeft': case 'ShiftRight': this.block = true; break;
@@ -116,6 +119,7 @@ export class Input {
   endFrame(dt) {
     if (this.attackHeld) this.attackHoldTime += dt;
     this.attackPressed = false;
+    this.heavyPressed = false;
     this.kickPressed = false;
     this.dodgePressed = false;
     this.lockPressed = false;

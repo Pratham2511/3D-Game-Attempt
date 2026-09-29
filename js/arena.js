@@ -55,7 +55,7 @@ export class Arena {
     if (!merged.attributes.normal) merged.computeVertexNormals();
     merged.computeBoundingBox();
     merged.computeBoundingSphere();
-    merged.boundsTree = new MeshBVH(merged, { maxLeafTris: 8 });
+    merged.boundsTree = new MeshBVH(merged, { targetLeafSize: 8 });
 
     // KHR_materials_unlit gives MeshBasicMaterial: rebuild as a lit material with the same texture.
     const map = sourceMaterial && sourceMaterial.map ? sourceMaterial.map : null;
