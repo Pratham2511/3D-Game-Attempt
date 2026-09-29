@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d0b09">
+  <title>Blades of Langthorne</title>
+  <meta name="description" content="Third-person sword fighting in the ruins of Langthorne Abbey. Ten levels, Three.js, no build step.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Single pinned Three.js version. Every addon is imported from the same version.
+    window.__THREE_VERSION = '0.186.1';
+    window.__BVH_VERSION = '0.9.15';
+    (function () {
+      var v = window.__THREE_VERSION, b = window.__BVH_VERSION;
+      var map = document.createElement('script');
+      map.type = 'importmap';
+      map.textContent = JSON.stringify({
+        imports: {
+          'three': 'https://cdn.jsdelivr.net/npm/three@' + v + '/build/three.module.js',
+          'three/addons/': 'https://cdn.jsdelivr.net/npm/three@' + v + '/examples/jsm/',
+          'three-mesh-bvh': 'https://cdn.jsdelivr.net/npm/three-mesh-bvh@' + b + '/build/index.module.js'
+        }
+      });
+      document.currentScript.after(map);
+    })();
+  </script>
+</head>
+<body>
+  <main id="app">
+    <canvas id="game" aria-label="Game view"></canvas>
+
+    <section id="loading" class="screen" aria-live="polite">
+      <div class="panel loading-panel">
+        <h1 class="title">Blades of Langthorne</h1>
+        <p class="subtitle">Ten trials among the abbey ruins</p>
+        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Loading progress">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <p class="status" id="load-status">Preparing...</p>
+        <div class="error" id="load-error" hidden></div>
+      </div>
+    </section>
+
+    <section id="menu" class="screen" hidden>
+      <div class="panel menu-panel">
+        <h1 class="title">Blades of Langthorne</h1>
+        <p class="subtitle">Level N brings N brutes. Survive all ten.</p>
+        <button class="btn primary" id="btn-play" type="button">Play</button>
+        <h2 class="section-label">Level select</h2>
+        <div class="level-grid" id="level-grid" role="group" aria-label="Level select"></div>
+        <div class="menu-row">
+          <label class="field">Quality
+            <select id="menu-quality"></select>
+          </label>
+        </div>
+        <div class="controls-hint" id="menu-controls"></div>
+      </div>
+    </section>
+
+    <section id="pause" class="screen dim" hidden>
+      <div class="panel small-panel">
+        <h2 class="heading">Paused</h2>
+        <button class="btn primary" id="btn-resume" type="button">Resume</button>
+        <button class="btn" id="btn-restart" type="button">Restart level</button>
+        <button class="btn" id="btn-mainmenu" type="button">Main menu</button>
+        <label class="field">Quality
+          <select id="pause-quality"></select>
+        </label>
+        <div class="controls-hint compact" id="pause-controls"></div>
+      </div>
+    </section>
+
+    <section id="gameover" class="screen dim" hidden>
+      <div class="panel small-panel">
+        <h2 class="heading danger">You have fallen</h2>
+        <p class="subtitle" id="gameover-detail"></p>
+        <button class="btn primary" id="btn-retry" type="button">Retry level</button>
+        <button class="btn" id="btn-gameover-menu" type="button">Main menu</button>
+      </div>
+    </section>
+
+    <section id="victory" class="screen dim" hidden>
+      <div class="panel small-panel">
+        <h2 class="heading gold">Victory</h2>
+        <p class="subtitle" id="victory-detail">All ten trials are won.</p>
+        <button class="btn primary" id="btn-victory-menu" type="button">Main menu</button>
+      </div>
+    </section>
+
+    <div id="card" class="card" hidden>
+      <div class="card-title" id="card-title">Level 1</div>
+      <div class="card-sub" id="card-sub"></div>
+    </div>
+
+    <div id="lock-prompt" class="lock-prompt" hidden>Click to capture the mouse</div>
+
+    <div id="hud" hidden>
+      <div class="hud-bars">
+        <div class="bar health" aria-label="Health"><div class="bar-fill" id="hp-fill"></div><div class="bar-lag" id="hp-lag"></div></div>
+        <div class="bar stamina" aria-label="Stamina"><div class="bar-fill" id="st-fill"></div></div>
+      </div>
+      <div class="hud-top">
+        <span id="hud-level">Level 1</span>
+        <span class="sep" aria-hidden="true"></span>
+        <span id="hud-enemies">Enemies 1</span>
+        <span class="sep" aria-hidden="true"></span>
+        <span id="hud-kills">Kills 0</span>
+      </div>
+      <div class="hud-fps" id="hud-fps">-- fps</div>
+      <div class="controls-hint compact hud-controls" id="hud-controls"></div>
+      <div id="enemy-bars"></div>
+      <div id="damage-numbers"></div>
+      <div id="lock-reticle" class="reticle" hidden></div>
+    </div>
+
+    <pre id="debug" class="debug" hidden></pre>
+  </main>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
